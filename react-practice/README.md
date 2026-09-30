@@ -1,75 +1,50 @@
-# React + TypeScript + Vite
+# React Learning 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# react js 
+- ReactJS is a JavaScript library used to build User Interfaces (UI).,
+- follow component based architecture 
+- it used to make single page applications 
 
-Currently, two official plugins are available:
+## Module 
+### why are we using type ='module' in script tag 
+- when we are using es6+ export and import in js file then it becomes a module therefore we have to specify the type=module 
+- two type of export 
+- export default name -> name can be any , only one default export in a file 
+- named export -> export (a) from a.js  - > it export multiple , name should be same inside a experssion {}
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Parcel / Webpack
+- these are module bundler which take the code , optimise them to clean package , problem they are solving for a large project we are having multiple file sending request to server , getting response , make page slow , 
 
-## React Compiler
+### babel 
+- it is a transpiler which converts react code to older browser understandable code 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What is react
+-  It significantly decreases the code with its components, states i.e., hooks, etc.
 
-## Expanding the ESLint configuration
+### What is reactDOM
+- React Dom is a library which is used to manupulate the dom , or render the component into the DOM
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Reconciliation
+- it is process of camparing real dom with virtual dom and updated the neccessary changes in dom with the help of diffing algorithum is called reconciliation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### React fiber 
+- it is a complete rewrite of react reconcilation 
+- with its help we can pause , rewrite rendering work 
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+#### createRoot method 
+- it is uused to create a root element to display react component inside DOM
 
-```
+#### render method 
+- it is used to render jsx, html into the dom
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+#### Component 
+- component are building block of code 
+- functional based compoenent
+- class based component
+-component name should be in 1 first charater capital
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+#### JSX
+- stands for javascript xml 
+-
