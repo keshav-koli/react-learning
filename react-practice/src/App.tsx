@@ -1,9 +1,10 @@
 import React from "react";
-import { Component, Component2 ,Sdsa }  from "./concepts/component";
-// import Compaonent3 from "./concepts/component";
+import { Component, Component2 } from "./concepts/component";
+import Compaonent4 from "./concepts/component";
 import A from "./concepts/component";
 
 import { JsxPractice } from "./concepts/JsxPractice";
+import { Properties } from "./concepts/properties";
 // ? Function based component
 // ^ 1
 // function App() {
@@ -38,33 +39,50 @@ import { JsxPractice } from "./concepts/JsxPractice";
 //     <Component></Component>
 //     <Component2/>
 //     <A></A>
-//     <Sdsa/>
+//     <Compaonent4/>
 //     </React.Fragment>
 //   )
 // }
+// const App = () => {
+//   return (
+//     <>
+//       <Properties name='keshav' age={78} address='moti nagar'>
+//         <h1>Hello</h1>
+//         <h1>Hello!!!</h1>
+//       </Properties>
+//       <Properties name='Ram' age={45} address='moti nagar'><></></Properties>
+//     </>
+//   )
+// }
 
-let App = () => {
+// export default App;
+
+
+const App = () => {
   let sname = "ram";
-  let age = 25;
-  let course = "Java Full stack";
-  let skills = ["html", "css", "js", "react", "tailwind CSS"];
-
-  return (
+  let age = 44;
+  let skills = {
+    frontend: ["html", "css", "js", "Reactjs"],
+    database: ["sql", "plsql", "mongodb"],
+    backend: ["pythoooonnn", "jooovaaa", "jovaScript", "Djangoooooo"],
+  };
+  let hobbies = {
+    dayTimeHobbies: {
+      publicHobies: "Reading",
+      privateHobies: "Snatching",
+    },
+    nightTimeHobbies: {
+      parentKnows: "Marvals",
+      parentDontKnows: "betting",
+    },
+  };
+  return(
     <>
-      <h1>My self {sname}</h1>
-      <h2>My age is {age}</h2>
-      <h2>I opted for {course}</h2>
-
-      <h2>My skills are:</h2>
-      <ul >
-        {skills.map((val, idx) => (
-          <li key={idx}>{val}</li>
-        ))}
-      </ul>
-
-      <JsxPractice />
+    
+    <Properties sname={sname} age={age} skills={skills} hobbies={hobbies}></Properties>
+    <Properties sname={sname} age={age} skills={skills} hobbies={hobbies} address='moti nagar'></Properties>
     </>
-  );
-};
+  )
+}
 
 export default App;

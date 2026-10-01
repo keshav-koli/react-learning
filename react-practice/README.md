@@ -47,4 +47,5 @@
 
 #### JSX
 - stands for javascript xml 
--
+- it looks like html but it is actually not a html
+- 
