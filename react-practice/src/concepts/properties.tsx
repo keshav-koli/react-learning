@@ -1,5 +1,8 @@
 // export const Properties=(props:any)=>{
 //     console.log(props);
+
+import PropsDrilling from "./propsDrilling"
+
     
 //     return (
 //         <>
@@ -28,29 +31,41 @@
 
 // ? Destructuring advance 
 
-export const Properties=(props)=>{
+// export const Properties=(props)=>{
+//     console.log(props);
+    
+//     let {
+//         sname='',
+//         address='no available',
+//         age=18,
+//         skills:{frontend,backend,database},
+//         hobbies:{dayTimeHobbies:{publicHobies,privateHobies},nightTimeHobbies:{parentKnows,parentDontKnows}},
+//         isplaced
+//     }=props
+//     return (
+//         <>
+//             <h1>{sname}</h1>
+//             <h1>{age}</h1>
+//             <div>{frontend.map((val)=>{
+//                 return <ul><li>{val}</li></ul>
+//             })}</div>
+//             <div>
+//                 {privateHobies}
+//             </div>
+//             <h4>{address}</h4>
+//             <h4>{isplaced?'hello':''}</h4>
+//         </>
+//     )
+// }
+
+// ? props drilling 
+
+export const Properties =(props:any)=>{
     console.log(props);
     
-    let {
-        sname,
-        address='no available',
-        age,
-        skills:{frontend,backend,database},
-        hobbies:{dayTimeHobbies:{publicHobies,privateHobies},nightTimeHobbies:{parentKnows,parentDontKnows}}
-    }=props
     return (
         <>
-            <h1>{sname}</h1>
-            <h1>{age}</h1>
-            <div>{frontend.map((val)=>{
-                return <ul><li>{val}</li></ul>
-            })}</div>
-            <div>
-                {privateHobies}
-            </div>
-            <h4>{address}</h4>
+            <PropsDrilling data={props} />
         </>
     )
 }
-
-// ? 

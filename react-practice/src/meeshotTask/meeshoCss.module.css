@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.heading {
+    margin: 1rem;
+    border: 4px solid blue;
+    color: blue;
+    width: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+}
+
+.headingText{
+
+}
+.box {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.container {
+    border: 1px solid gray;
+}
+
+.item_image {
+    width: 10rem;
+    height: 10rem;
+}
+
+.title_div {
+    width: 10rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+.title {
+    font-size: 0.8rem;
+    color: gray;
+}
+
+.Price{
+    font-weight: 600;
+}
+
+.rate{
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.greenRating{
+    margin-left: 0.3rem;
+    border: 1px solid greenyellow;
+    background-color: greenyellow;
+    border-radius: 1rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right:0.5rem ;
+}
+.yellowRating{
+    margin-left: 0.3rem;
+    border: 1px solid yellow;
+    background-color: yellow;
+    border-radius: 1rem;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right:0.5rem ;
+}
+
+
+.review{
+    font-size: 0.7rem;
+    padding-top: 0.15rem;
+    text-align: center;
+    }
