@@ -10,6 +10,7 @@ import { MeeshoProject } from "./meeshotTask/meeshoTask";
 // @ts-expect-error -- the asset data is provided by an untyped JavaScript module.
 import assestsData from './assets/Assets.js';
 import StateHook from './concepts/UseStateHook.js'
+import ColorChange from "./ColorChangingTask/colorChange.js";
 // ? Function based component
 // ^ 1
 // function App() {
@@ -126,11 +127,32 @@ import StateHook from './concepts/UseStateHook.js'
 // export default App;
 
 
+// ? UseState
+// let App = () => {
+//   return (
+//     <>
+//     <StateHook></StateHook>
+//     </>
+//   )
+// }
+
+// export default App;
+
+// ? Color Changing task
 
 let App = () => {
   return (
     <>
-    <StateHook></StateHook>
+      <div className="flex min-h-screen items-center justify-center bg-slate-200">
+      <div className="rounded-xl bg-white p-8 shadow-md">
+        <h1 className="text-2xl font-bold text-blue-600">
+          Tailwind CSS v4 + React works!
+        </h1>
+        <p className="mt-2 text-gray-600">
+          Start editing to build your application.
+        </p>
+      </div>
+    </div>
     </>
   )
 }
