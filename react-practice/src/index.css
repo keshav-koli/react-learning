@@ -3,3 +3,7 @@
     color: blue;
     background-color: beige;
 }
+
+.backgroundColorChanging{
+    color: var(--color-green-500);
+}

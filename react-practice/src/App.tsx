@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import { Component, Component2 } from "./concepts/component";
 import Compaonent4 from "./concepts/component";
 import A from "./concepts/component";
@@ -11,6 +11,9 @@ import { MeeshoProject } from "./meeshotTask/meeshoTask";
 import assestsData from './assets/Assets.js';
 import StateHook from './concepts/UseStateHook.js'
 import ColorChange from "./ColorChangingTask/colorChange.js";
+// import ContextApi from "./concepts/context.js";
+import Profile from "./concepts/Profile.js";
+import Login from "./concepts/Login.js";
 // ? Function based component
 // ^ 1
 // function App() {
@@ -140,21 +143,47 @@ import ColorChange from "./ColorChangingTask/colorChange.js";
 
 // ? Color Changing task
 
-let App = () => {
+// let App = () => {
+//   return (
+//     <>
+//       <ColorChange></ColorChange>
+//       <label htmlFor="sd"></label>
+//       <input id=""></input>
+//     </>
+//   )
+// }
+
+// export default App;
+
+// ? Context Api 
+// export let myContext = createContext({});
+
+// let App = () => {
+//   let data = { sd: 'dsaf' }
+
+//   return (
+//     <>
+//       <myContext.Provider value={data }>
+//         <ContextApi></ContextApi>
+//       </myContext.Provider>
+//     </>
+//   )
+// }
+
+// export default App;
+
+// ? Login task by useContext
+export let userContext = createContext({});
+
+const App = () => {
+  const [user, setUser] = useState(null);
+
   return (
-    <>
-      <div className="flex min-h-screen items-center justify-center bg-slate-200">
-      <div className="rounded-xl bg-white p-8 shadow-md">
-        <h1 className="text-2xl font-bold text-blue-600">
-          Tailwind CSS v4 + React works!
-        </h1>
-        <p className="mt-2 text-gray-600">
-          Start editing to build your application.
-        </p>
-      </div>
-    </div>
-    </>
+    <userContext.Provider value={{ user, setUser }}>
+      <Login />
+      <Profile />
+    </userContext.Provider>
   )
 }
 
-export default App;
+export default App

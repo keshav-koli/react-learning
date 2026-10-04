@@ -46,6 +46,31 @@
 -component name should be in 1 first charater capital
 
 #### JSX
-- stands for javascript xml 
+- stands for javascript xml and it is more stricter than html.
 - it looks like html but it is actually not a html
-- 
+
+`Rules`
+- html class become classname  and for become htmlfor
+- element lower case only 
+- when writing html always have return but when writing js use {}
+- multiple html element must be stored in one parent that can be div , or react fragment =><></>
+
+
+
+#### props and props drilling 
+- way of sending data from parent to child component 
+- props means properties
+- unidirectional
+- props children - way of sending jsx element in props to child component
+- default props - suppose we have destruture props in child , want if particular props don't come have a ddefault value
+- props drilling -  way of sending props to child then grandchild then greatgrandchild and so on
+
+
+#### Css in react
+- inline css , in jsx element we have style attribute to give inline style 
+- module css ,  having a separte module.css file 
+- globale css - index.css 
+
+
+#### UseState
+- when we want to show dynamics data in Ui 
