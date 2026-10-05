@@ -1,19 +1,23 @@
-import React, { createContext, useState } from "react";
-import { Component, Component2 } from "./concepts/component";
-import Compaonent4 from "./concepts/component";
-import A from "./concepts/component";
+// import React, { createContext, useState } from "react";
+import { useEffect, useState } from "react";
+// import { Component, Component2 } from "./concepts/component";
+// import Compaonent4 from "./concepts/component";
+// import A from "./concepts/component";
 
-import { JsxPractice } from "./concepts/JsxPractice";
-import { Properties } from "./concepts/properties";
-import { MeeshoProject } from "./meeshotTask/meeshoTask";
+// import { JsxPractice } from "./concepts/JsxPractice";
+// import { Properties } from "./concepts/properties";
+// import { MeeshoProject } from "./meeshotTask/meeshoTask";
 // Assets.js is a JavaScript module without TypeScript declarations.
 // @ts-expect-error -- the asset data is provided by an untyped JavaScript module.
 import assestsData from './assets/Assets.js';
-import StateHook from './concepts/UseStateHook.js'
-import ColorChange from "./ColorChangingTask/colorChange.js";
+// import StateHook from './concepts/UseStateHook.js'
+// import ColorChange from "./ColorChangingTask/colorChange.js";
+import Card from "./themeChange/Card.js";
 // import ContextApi from "./concepts/context.js";
-import Profile from "./concepts/Profile.js";
-import Login from "./concepts/Login.js";
+// import Profile from "./concepts/Profile.js";
+// import Login from "./concepts/Login.js";
+import { ThemeProvider } from "./themeChange/theme.js";
+import ThemeBtn from "./themeChange/ThemeBtn.js";
 // ? Function based component
 // ^ 1
 // function App() {
@@ -173,16 +177,55 @@ import Login from "./concepts/Login.js";
 // export default App;
 
 // ? Login task by useContext
-export let userContext = createContext({});
+// export let userContext = createContext({});
+
+// const App = () => {
+//   const [user, setUser] = useState(null);
+
+//   return (
+//     <userContext.Provider value={{ user, setUser }}>
+//       <Login />
+//       <Profile />
+//     </userContext.Provider>
+//   )
+// }
+
+// export default App
+
+
+// ? theme change using context APi 
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [theme, setTheme] = useState('light');
+  const lightMode = () => {
+    setTheme('light')
+  }
+  const darkMode = () => {
+    setTheme('dark')
+  }
+  useEffect(() => {
+    let themebody = document.querySelector('html');
+    themebody?.classList.remove("light", "dark")
+    themebody?.classList.add(theme);
+  }, [theme])
+
 
   return (
-    <userContext.Provider value={{ user, setUser }}>
-      <Login />
-      <Profile />
-    </userContext.Provider>
+    <ThemeProvider value={{ theme, lightMode, darkMode }}>
+      <div className="flex flex-wrap min-h-screen items-center">
+        <div className="w-full">
+          <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
+            <ThemeBtn />
+          </div>
+
+          <div className="w-full max-w-sm mx-auto">
+            <Card />
+          </div>
+        </div>
+      </div>
+    </ThemeProvider>
+
+
   )
 }
 
