@@ -20,6 +20,8 @@ import assestsData from './assets/Assets.js';
 // import ThemeBtn from "./themeChange/ThemeBtn.js";
 import { TodoProvider } from './todoTask/todoContext.js';
 import type Todo from "./todoTask/todoContext.js";
+import TodoForm from "./todoTask/TodoForm.js";
+import TodoItem from "./todoTask/TodoItem.js";
 // ? Function based component
 // ^ 1
 // function App() {
@@ -247,12 +249,24 @@ const App = () => {
   }
 
   const addTodo = (todo: Todo) => {
-    setTodo((prev) => [todo,...prev]);
+    setTodo((prev) => [todo, ...prev]);
   }
 
   const toggleComplete = (Id: number) => {
     setTodo((prev) => prev.map(item => item.id === Id ? { ...item, isCompleted: !item.isCompleted } : item))
   }
+
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todo))
+  }, [todo])
+
+  useEffect(() => {
+    const todo_item: Todo[] = JSON.parse(localStorage.getItem("todos") ?? "[]");
+    if (todo_item && todo_item.length > 0) {
+      setTodo(todo_item)
+    }
+  }, [])
 
   return (
     <TodoProvider value={{ todo, updateTodo, deleteTodo, addTodo, toggleComplete }}>
@@ -261,17 +275,15 @@ const App = () => {
           <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
           <div className="mb-4">
             {/* Todo form goes here */}
-            {/* <TodoForm /> */}
+            <TodoForm />
           </div>
           <div className="flex flex-wrap gap-y-3">
             {/*Loop and Add TodoItem here */}
-            {/* {todos.map((todo) => (
-              <div key={todo.id}
-                className='w-full'
-              >
-                <TodoItem todo={todo} />
+            {todo.map((item) => (
+              <div key={item.id} className="w-full">
+                <TodoItem todo={item} />
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
       </div>

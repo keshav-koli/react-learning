@@ -6,10 +6,10 @@ const todoContext = createContext({
         todo: "Wake Up early",
         isCompleted: true
     }],
-    deleteTodo: (id: number) => { },
-    updateTodo: (id: number, todo: Todo) => { },
-    addTodo: (todo: Todo) => { },
-    toggleComplete: (id: number) => { }
+    deleteTodo: (_id: number) => { },
+    updateTodo: (_id: number, _todo: Todo) => { },
+    addTodo: (_todo: Todo) => { },
+    toggleComplete: (_id: number) => { }
 });
 
 export const TodoProvider = todoContext.Provider;
