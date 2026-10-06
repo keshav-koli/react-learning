@@ -12,12 +12,14 @@ import { useEffect, useState } from "react";
 import assestsData from './assets/Assets.js';
 // import StateHook from './concepts/UseStateHook.js'
 // import ColorChange from "./ColorChangingTask/colorChange.js";
-import Card from "./themeChange/Card.js";
+// import Card from "./themeChange/Card.js";
 // import ContextApi from "./concepts/context.js";
 // import Profile from "./concepts/Profile.js";
 // import Login from "./concepts/Login.js";
-import { ThemeProvider } from "./themeChange/theme.js";
-import ThemeBtn from "./themeChange/ThemeBtn.js";
+// import { ThemeProvider } from "./themeChange/theme.js";
+// import ThemeBtn from "./themeChange/ThemeBtn.js";
+import { TodoProvider } from './todoTask/todoContext.js';
+import type Todo from "./todoTask/todoContext.js";
 // ? Function based component
 // ^ 1
 // function App() {
@@ -140,7 +142,7 @@ import ThemeBtn from "./themeChange/ThemeBtn.js";
 //     <>
 //     <StateHook></StateHook>
 //     </>
-//   )
+//   ) 
 // }
 
 // export default App;
@@ -195,38 +197,85 @@ import ThemeBtn from "./themeChange/ThemeBtn.js";
 
 // ? theme change using context APi 
 
-const App = () => {
-  const [theme, setTheme] = useState('light');
-  const lightMode = () => {
-    setTheme('light')
-  }
-  const darkMode = () => {
-    setTheme('dark')
-  }
-  useEffect(() => {
-    let themebody = document.querySelector('html');
-    themebody?.classList.remove("light", "dark")
-    themebody?.classList.add(theme);
-  }, [theme])
+// const App = () => {
+//   const [theme, setTheme] = useState('light');
+//   const lightMode = () => {
+//     setTheme('light')
+//   }
+//   const darkMode = () => {
+//     setTheme('dark')
+//   }
+//   useEffect(() => {
+//     let themebody = document.querySelector('html');
+//     themebody?.classList.remove("light", "dark")
+//     themebody?.classList.add(theme);
+//   }, [theme])
 
+
+//   return (
+//     <ThemeProvider value={{ theme, lightMode, darkMode }}>
+//       <div className="flex flex-wrap min-h-screen items-center">
+//         <div className="w-full">
+//           <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
+//             <ThemeBtn />
+//           </div>
+
+//           <div className="w-full max-w-sm mx-auto">
+//             <Card />
+//           </div>
+//         </div>
+//       </div>
+//     </ThemeProvider>
+
+
+//   )
+// }
+
+// export default App
+
+
+// Todo Task
+const App = () => {
+  const [todo, setTodo] = useState<Todo[]>([]);
+
+  const updateTodo = (Id: number, todo: Todo) => {
+    setTodo((prev) => prev.map(item => item.id == Id ? { ...item, ...todo } : item))
+  }
+
+  const deleteTodo = (Id: number) => {
+    setTodo((prev) => prev.filter(item => item.id !== Id))
+  }
+
+  const addTodo = (todo: Todo) => {
+    setTodo((prev) => [todo,...prev]);
+  }
+
+  const toggleComplete = (Id: number) => {
+    setTodo((prev) => prev.map(item => item.id === Id ? { ...item, isCompleted: !item.isCompleted } : item))
+  }
 
   return (
-    <ThemeProvider value={{ theme, lightMode, darkMode }}>
-      <div className="flex flex-wrap min-h-screen items-center">
-        <div className="w-full">
-          <div className="w-full max-w-sm mx-auto flex justify-end mb-4">
-            <ThemeBtn />
+    <TodoProvider value={{ todo, updateTodo, deleteTodo, addTodo, toggleComplete }}>
+      <div className="bg-[#172842] min-h-screen py-8">
+        <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
+          <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
+          <div className="mb-4">
+            {/* Todo form goes here */}
+            {/* <TodoForm /> */}
           </div>
-
-          <div className="w-full max-w-sm mx-auto">
-            <Card />
+          <div className="flex flex-wrap gap-y-3">
+            {/*Loop and Add TodoItem here */}
+            {/* {todos.map((todo) => (
+              <div key={todo.id}
+                className='w-full'
+              >
+                <TodoItem todo={todo} />
+              </div>
+            ))} */}
           </div>
         </div>
       </div>
-    </ThemeProvider>
-
-
+    </TodoProvider>
   )
 }
-
-export default App
+export default App;
