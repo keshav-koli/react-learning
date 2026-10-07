@@ -1,5 +1,5 @@
 // import React, { createContext, useState } from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 // import { Component, Component2 } from "./concepts/component";
 // import Compaonent4 from "./concepts/component";
 // import A from "./concepts/component";
@@ -18,10 +18,10 @@ import assestsData from './assets/Assets.js';
 // import Login from "./concepts/Login.js";
 // import { ThemeProvider } from "./themeChange/theme.js";
 // import ThemeBtn from "./themeChange/ThemeBtn.js";
-import { TodoProvider } from './todoTask/todoContext.js';
-import type Todo from "./todoTask/todoContext.js";
-import TodoForm from "./todoTask/TodoForm.js";
-import TodoItem from "./todoTask/TodoItem.js";
+// import { TodoProvider } from './todoTask/todoContext.js';
+// import type Todo from "./todoTask/todoContext.js";
+// import TodoForm from "./todoTask/TodoForm.js";
+// import TodoItem from "./todoTask/TodoItem.js";
 // ? Function based component
 // ^ 1
 // function App() {
@@ -237,57 +237,112 @@ import TodoItem from "./todoTask/TodoItem.js";
 
 
 // Todo Task
+// const App = () => {
+//   const [todo, setTodo] = useState<Todo[]>([]);
+
+//   const updateTodo = (Id: number, todo: Todo) => {
+//     setTodo((prev) => prev.map(item => item.id == Id ? { ...item, ...todo } : item))
+//   }
+
+//   const deleteTodo = (Id: number) => {
+//     setTodo((prev) => prev.filter(item => item.id !== Id))
+//   }
+
+//   const addTodo = (todo: Todo) => {
+//     setTodo((prev) => [todo, ...prev]);
+//   }
+
+//   const toggleComplete = (Id: number) => {
+//     setTodo((prev) => prev.map(item => item.id === Id ? { ...item, isCompleted: !item.isCompleted } : item))
+//   }
+
+
+//   useEffect(() => {
+//     localStorage.setItem("todos", JSON.stringify(todo))
+//   }, [todo])
+
+//   useEffect(() => {
+//     const todo_item: Todo[] = JSON.parse(localStorage.getItem("todos") ?? "[]");
+//     if (todo_item && todo_item.length > 0) {
+//       setTodo(todo_item)
+//     }
+//   }, [])
+
+//   return (
+//     <TodoProvider value={{ todo, updateTodo, deleteTodo, addTodo, toggleComplete }}>
+//       <div className="bg-[#172842] min-h-screen py-8">
+//         <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
+//           <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
+//           <div className="mb-4">
+//             {/* Todo form goes here */}
+//             <TodoForm />
+//           </div>
+//           <div className="flex flex-wrap gap-y-3">
+//             {/*Loop and Add TodoItem here */}
+//             {todo.map((item) => (
+//               <div key={item.id} className="w-full">
+//                 <TodoItem todo={item} />
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     </TodoProvider>
+//   )
+// }
+// export default App;
+
+
+// ? Password generter
 const App = () => {
-  const [todo, setTodo] = useState<Todo[]>([]);
-
-  const updateTodo = (Id: number, todo: Todo) => {
-    setTodo((prev) => prev.map(item => item.id == Id ? { ...item, ...todo } : item))
-  }
-
-  const deleteTodo = (Id: number) => {
-    setTodo((prev) => prev.filter(item => item.id !== Id))
-  }
-
-  const addTodo = (todo: Todo) => {
-    setTodo((prev) => [todo, ...prev]);
-  }
-
-  const toggleComplete = (Id: number) => {
-    setTodo((prev) => prev.map(item => item.id === Id ? { ...item, isCompleted: !item.isCompleted } : item))
-  }
+  const [length, setLength] = useState(8);
+  const [password, setPassword] = useState("");
+  const [numberAllowed, setNumberAllowed] = useState(false);
+  const [charaterAllowed, setCharaterAllowed] = useState(false);
 
 
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todo))
-  }, [todo])
-
-  useEffect(() => {
-    const todo_item: Todo[] = JSON.parse(localStorage.getItem("todos") ?? "[]");
-    if (todo_item && todo_item.length > 0) {
-      setTodo(todo_item)
+  const generatePassword = useCallback(() => {
+    let pass = '';
+    let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    if (numberAllowed) str += '0123456789';
+    if (charaterAllowed) str += '!@#$%^&*-_+=[]{}~`'
+    for (let index = 0; index < length; index++) {
+      let char: number = Math.floor(Math.random() * str.length + 1);
+      pass += str[char];
     }
-  }, [])
+    setPassword(pass);
+  }, [numberAllowed, charaterAllowed, length])
+
+  useEffect(() => {
+    generatePassword();
+  }, [length, numberAllowed, charaterAllowed])
+
 
   return (
-    <TodoProvider value={{ todo, updateTodo, deleteTodo, addTodo, toggleComplete }}>
-      <div className="bg-[#172842] min-h-screen py-8">
-        <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
-          <h1 className="text-2xl font-bold text-center mb-8 mt-2">Manage Your Todos</h1>
-          <div className="mb-4">
-            {/* Todo form goes here */}
-            <TodoForm />
+    <>
+      <div className="bg-gray-700 w-full max-w-md mx-auto  shadow-md rounded-lg px-4 py-3 my-8 text-orange-500">
+        <span className="text-white">Password</span>
+        <div className="flex shadow rounded-lg overflow-hidden mb-4">
+          <input type="text" value={password} className="outline-none w-full py-1 px-3 bg-white" />
+          <button className="bg-blue-800 w-15 text-white">Copy</button>
+        </div>
+        <div className="flex gap-2 items-center">
+          <div className="flex items-center gap-x-1">
+            <input type="range" value={length} min={8} max={30} onChange={(e) => setLength(Number(e.target.value))} />
+            <span>Length({length})</span>
           </div>
-          <div className="flex flex-wrap gap-y-3">
-            {/*Loop and Add TodoItem here */}
-            {todo.map((item) => (
-              <div key={item.id} className="w-full">
-                <TodoItem todo={item} />
-              </div>
-            ))}
+          <div className="flex gap-2 items-center">
+            <input type="checkbox" onChange={() => setNumberAllowed(prev => !prev)} /><span>Number </span>
           </div>
+          <div className="flex gap-2 items-center">
+            <input type="checkbox" onChange={() => setCharaterAllowed(prev => !prev)} /><span>Charater </span>
+          </div>
+
         </div>
       </div>
-    </TodoProvider>
+    </>
+
   )
 }
-export default App;
+
+export default App
