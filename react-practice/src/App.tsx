@@ -294,64 +294,74 @@ import assestsData from './assets/Assets.js';
 
 
 // ? Password generter
-const App = () => {
-  const [length, setLength] = useState(8);
-  const [password, setPassword] = useState("");
-  const [numberAllowed, setNumberAllowed] = useState(false);
-  const [charaterAllowed, setCharaterAllowed] = useState(false);
+// const App = () => {
+//   const [length, setLength] = useState(8);
+//   const [password, setPassword] = useState("");
+//   const [numberAllowed, setNumberAllowed] = useState(false);
+//   const [charaterAllowed, setCharaterAllowed] = useState(false);
 
 
-  const generatePassword = useCallback(() => {
-    let pass = '';
-    let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    if (numberAllowed) str += '0123456789';
-    if (charaterAllowed) str += '!@#$%^&*-_+=[]{}~`'
-    for (let index = 1; index <= length; index++) {
-      let char: number = Math.floor(Math.random() * str.length + 1);
-      console.log(Math.random());
-      console.log(Math.random()*str.length);
-      console.log(Math.random()*str.length +1);
+//   const generatePassword = useCallback(() => {
+//     let pass = '';
+//     let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+//     if (numberAllowed) str += '0123456789';
+//     if (charaterAllowed) str += '!@#$%^&*-_+=[]{}~`'
+//     for (let index = 1; index <= length; index++) {
+//       let char: number = Math.floor(Math.random() * str.length + 1);
+//       console.log(Math.random());
+//       console.log(Math.random()*str.length);
+//       console.log(Math.random()*str.length +1);
       
-      pass += str.charAt(char);
-    }
-    setPassword(pass);
-  }, [numberAllowed, charaterAllowed, length])
+//       pass += str.charAt(char);
+//     }
+//     setPassword(pass);
+//   }, [numberAllowed, charaterAllowed, length])
 
-  useEffect(() => {
-    generatePassword();
-  }, [length, numberAllowed, charaterAllowed])
+//   useEffect(() => {
+//     generatePassword();
+//   }, [length, numberAllowed, charaterAllowed])
 
-  const passwordRef = useRef<HTMLInputElement>(null);
+//   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const CopyText = () => {
-    passwordRef.current?.select();
-    passwordRef.current?.setSelectionRange(0, 30);
-    window.navigator.clipboard.writeText(password)
-  }
+//   const CopyText = () => {
+//     passwordRef.current?.select();
+//     passwordRef.current?.setSelectionRange(0, 30);
+//     window.navigator.clipboard.writeText(password)
+//   }
+//   return (
+//     <>
+//       <div className="bg-gray-700 w-full max-w-md mx-auto  shadow-md rounded-lg px-4 py-3 my-8 text-orange-500">
+//         <span className="text-white">Password</span>
+//         <div className="flex shadow rounded-lg overflow-hidden mb-4">
+//           <input type="text" value={password} className="outline-none w-full py-1 px-3 bg-white" ref={passwordRef} />
+//           <button className="bg-blue-800 w-15 text-white" onClick={CopyText}>Copy</button>
+//         </div>
+//         <div className="flex gap-2 items-center">
+//           <div className="flex items-center gap-x-1">
+//             <input type="range" value={length} min={8} max={30} onChange={(e) => setLength(Number(e.target.value))} />
+//             <span>Length({length})</span>
+//           </div>
+//           <div className="flex gap-2 items-center">
+//             <input type="checkbox" onChange={() => setNumberAllowed(prev => !prev)} /><span>Number </span>
+//           </div>
+//           <div className="flex gap-2 items-center">
+//             <input type="checkbox" onChange={() => setCharaterAllowed(prev => !prev)} /><span>Charater </span>
+//           </div>
+
+//         </div>
+//       </div>
+//     </>
+
+//   )
+// }
+
+// export default App
+
+
+// ? Curreny Exchanger
+const App = () => {
   return (
-    <>
-      <div className="bg-gray-700 w-full max-w-md mx-auto  shadow-md rounded-lg px-4 py-3 my-8 text-orange-500">
-        <span className="text-white">Password</span>
-        <div className="flex shadow rounded-lg overflow-hidden mb-4">
-          <input type="text" value={password} className="outline-none w-full py-1 px-3 bg-white" ref={passwordRef} />
-          <button className="bg-blue-800 w-15 text-white" onClick={CopyText}>Copy</button>
-        </div>
-        <div className="flex gap-2 items-center">
-          <div className="flex items-center gap-x-1">
-            <input type="range" value={length} min={8} max={30} onChange={(e) => setLength(Number(e.target.value))} />
-            <span>Length({length})</span>
-          </div>
-          <div className="flex gap-2 items-center">
-            <input type="checkbox" onChange={() => setNumberAllowed(prev => !prev)} /><span>Number </span>
-          </div>
-          <div className="flex gap-2 items-center">
-            <input type="checkbox" onChange={() => setCharaterAllowed(prev => !prev)} /><span>Charater </span>
-          </div>
-
-        </div>
-      </div>
-    </>
-
+    <div>App</div>
   )
 }
 
