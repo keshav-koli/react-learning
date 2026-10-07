@@ -1,5 +1,5 @@
 // import React, { createContext, useState } from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 // import { Component, Component2 } from "./concepts/component";
 // import Compaonent4 from "./concepts/component";
 // import A from "./concepts/component";
@@ -306,9 +306,13 @@ const App = () => {
     let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     if (numberAllowed) str += '0123456789';
     if (charaterAllowed) str += '!@#$%^&*-_+=[]{}~`'
-    for (let index = 0; index < length; index++) {
+    for (let index = 1; index <= length; index++) {
       let char: number = Math.floor(Math.random() * str.length + 1);
-      pass += str[char];
+      console.log(Math.random());
+      console.log(Math.random()*str.length);
+      console.log(Math.random()*str.length +1);
+      
+      pass += str.charAt(char);
     }
     setPassword(pass);
   }, [numberAllowed, charaterAllowed, length])
@@ -317,14 +321,20 @@ const App = () => {
     generatePassword();
   }, [length, numberAllowed, charaterAllowed])
 
+  const passwordRef = useRef<HTMLInputElement>(null);
 
+  const CopyText = () => {
+    passwordRef.current?.select();
+    passwordRef.current?.setSelectionRange(0, 30);
+    window.navigator.clipboard.writeText(password)
+  }
   return (
     <>
       <div className="bg-gray-700 w-full max-w-md mx-auto  shadow-md rounded-lg px-4 py-3 my-8 text-orange-500">
         <span className="text-white">Password</span>
         <div className="flex shadow rounded-lg overflow-hidden mb-4">
-          <input type="text" value={password} className="outline-none w-full py-1 px-3 bg-white" />
-          <button className="bg-blue-800 w-15 text-white">Copy</button>
+          <input type="text" value={password} className="outline-none w-full py-1 px-3 bg-white" ref={passwordRef} />
+          <button className="bg-blue-800 w-15 text-white" onClick={CopyText}>Copy</button>
         </div>
         <div className="flex gap-2 items-center">
           <div className="flex items-center gap-x-1">
