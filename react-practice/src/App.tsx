@@ -1,5 +1,5 @@
 // import React, { createContext, useState } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+// import { useCallback, useEffect, useRef, useState } from "react";
 // import { Component, Component2 } from "./concepts/component";
 // import Compaonent4 from "./concepts/component";
 // import A from "./concepts/component";
@@ -12,6 +12,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import assestsData from './assets/Assets.js';
 import CurrenyExhanger from "./CurrenyExchanger/CurrenyExhanger.js";
 import useCurrencyInfo from "./CurrenyExchanger/Currency.js";
+import { useState } from 'react';
 // import StateHook from './concepts/UseStateHook.js'
 // import ColorChange from "./ColorChangingTask/colorChange.js";
 // import Card from "./themeChange/Card.js";
