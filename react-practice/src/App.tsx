@@ -362,19 +362,19 @@ import useCurrencyInfo from "./CurrenyExchanger/Currency.js";
 
 // ? Curreny Exchanger
 const App = () => {
-  const [amount,setAmount]=useState(0);
-  const [convertedAmount,setConvertedAmount]=useState(0);
-  const [from,setFrom]=useState('usd')
-  const [to,setTo]=useState('inr')
+  const [amount, setAmount] = useState(0);
+  const [convertedAmount, setConvertedAmount] = useState(0);
+  const [from, setFrom] = useState('usd')
+  const [to, setTo] = useState('inr')
 
-  const currencyInfo=useCurrencyInfo(from);
+  const currencyInfo = useCurrencyInfo(from);
   const options = Object.keys(currencyInfo ?? [])
 
-  const convert=()=>{
+  const convert = () => {
     setConvertedAmount(amount * (currencyInfo?.[to] ?? 0))
   }
 
-  const swap=()=>{
+  const swap = () => {
     setFrom(to)
     setTo(from)
     setConvertedAmount(amount);
@@ -403,8 +403,8 @@ const App = () => {
                 amount={amount}
                 currencyOptions={options}
                 selectedCurrency={from}
-                onCurrenyChange={(curr)=> setFrom(curr)}
-                onAmountChange={currency=>setAmount(currency)}
+                onCurrenyChange={(curr: string) => setFrom(curr)}
+                onAmountChange={(currency: number) => setAmount(currency)}
               />
             </div>
             <div className="relative w-full h-0.5">
@@ -423,7 +423,7 @@ const App = () => {
                 currencyOptions={options}
                 selectedCurrency={to}
                 amountDisabled={true}
-                onCurrenyChange={(curr)=> setTo(curr)}
+                onCurrenyChange={(curr: any) => setTo(curr)}
               />
             </div>
             <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg" >
