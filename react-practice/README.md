@@ -74,3 +74,4 @@
 
 #### UseState
 - when we want to show dynamics data in Ui 
+- [name,useName]=useState()
