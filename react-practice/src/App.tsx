@@ -10,6 +10,7 @@
 // Assets.js is a JavaScript module without TypeScript declarations.
 // @ts-expect-error -- the asset data is provided by an untyped JavaScript module.
 import assestsData from './assets/Assets.js';
+import CBConponent from './CBC/CBComponent.tsx';
 // import CurrenyExhanger from "./CurrenyExchanger/CurrenyExhanger.js";
 // import useCurrencyInfo from "./CurrenyExchanger/Currency.js";
 // import { useState } from 'react';
@@ -444,11 +445,23 @@ import HOCChild from './HOC/HOCChild.tsx'
 
 
 // ? HOC
+// const App = () => {
+//   return (
+//     <>
+//      <HOCChild id={2}></HOCChild> 
+//     </>
+//   )
+// }
+
+// export default App
+
+
+// ?Class Based Component
+import React from 'react'
+
 const App = () => {
   return (
-    <>
-     <HOCChild id={2}></HOCChild> 
-    </>
+    <CBConponent></CBConponent>
   )
 }
 
