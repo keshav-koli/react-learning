@@ -74,4 +74,11 @@
 
 #### UseState
 - when we want to show dynamics data in Ui 
+- State is a value React remembers between renders. Calling a state setter requests an update
 - [name,useName]=useState()
+
+
+
+#### Why do we needs keys in React 
+- We need keys in React to give array elements a stable identity, which allows React's diffing algorithm to efficiently track, update, and reorder components across renders
+- use a stable key , don't use index and math.random() as a key 
