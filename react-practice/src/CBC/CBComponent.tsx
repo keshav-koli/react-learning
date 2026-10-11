@@ -2,36 +2,62 @@ import { Component, type ReactNode } from "react";
 
 
 class CBConponent extends Component<any, { count: number }> {
-    constructor(props:any) {
+    constructor(props: any) {
+        console.log('this is construtor');
+
         super(props)
         this.state = {
             count: 0
         }
-        console.log(this);
-        console.log(this.state);
-        
-        this.resetCounter=this.resetCounter.bind(this);
+        // console.log(this);
+        // console.log(this.state);
+
+        this.resetCounter = this.resetCounter.bind(this);
     }
-    
+
     sayHello() {
         console.log("Namaste react");
     }
 
-    increment=()=>{
-        this.setState(prevstate=>({
+    static getDerivedStateFromProps(prevProps, prevState) {
+        console.log("I am getDerivedStateFromProps () methods");
+        // console.log(prevState);
+        // console.log(prevProps);
+        return null;
+    }
+
+    componentDidMount(): void {
+        console.log("component mounted");
+        
+    }
+    shouldComponentUpdate(){
+        console.log("checking update");
+        
+        return true;
+    }
+
+    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<{ count: number; }>, snapshot?: any): void {
+        console.log("COmponenet updated");
+        
+    }
+
+    increment = () => {
+        this.setState(prevstate => ({
             count: prevstate.count + 1
         }));
     }
-    decrement=()=>{
-        this.setState({count:this.state.count-1});
+    decrement = () => {
+        this.setState({ count: this.state.count - 1 });
     }
 
-    resetCounter(){
-        this.setState({count:0});
+    resetCounter() {
+        this.setState({ count: 0 });
     }
 
 
     render(): ReactNode {
+        console.log("render method");
+        
         return (
             <>
                 <h1>MyCounter : {this.state.count}</h1>
@@ -46,8 +72,8 @@ class CBConponent extends Component<any, { count: number }> {
 
 
 }
-const myCom = new CBConponent("as");
-myCom.sayHello()
+// const myCom = new CBConponent("as");
+// myCom.sayHello()
 
 
 export default CBConponent;

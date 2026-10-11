@@ -9,3 +9,8 @@
 .backgroundColorChanging{
     color: var(--color-green-500);
 }
+
+*{
+    background-color: black;
+    color: white;
+}
