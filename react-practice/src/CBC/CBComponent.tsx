@@ -1,13 +1,14 @@
 import { Component, type ReactNode } from "react";
 
 
-class CBConponent extends Component<any, { count: number }> {
+class CBConponent extends Component<any, { count: number, lifeCycleStage: string }> {
     constructor(props: any) {
-        console.log('this is construtor');
+        console.log('this is construtor- Mounting 1');
 
         super(props)
         this.state = {
-            count: 0
+            count: 0,
+            lifeCycleStage: 'mounting',
         }
         // console.log(this);
         // console.log(this.state);
@@ -19,26 +20,40 @@ class CBConponent extends Component<any, { count: number }> {
         console.log("Namaste react");
     }
 
-    static getDerivedStateFromProps(prevProps, prevState) {
-        console.log("I am getDerivedStateFromProps () methods");
+    static getDerivedStateFromProps(prevProps: any, prevState: any) {
+        prevState.lifeCycleStage == 'mounting' ? console.log(`I am getDerivedStateFromProps () methods : ${prevState.lifeCycleStage}  2 `) : console.log(`I am getDerivedStateFromProps () methods : ${prevState.lifeCycleStage} 1 `);
         // console.log(prevState);
         // console.log(prevProps);
-        return null;
+        return { count: prevState.count + 1 };
     }
 
     componentDidMount(): void {
-        console.log("component mounted");
-        
-    }
-    shouldComponentUpdate(){
-        console.log("checking update");
-        
-        return true;
+        console.log("component mounted - Mounting 4");
+
     }
 
+    shouldComponentUpdate(prevProps: any, prevState: any) {
+        console.log("checking update - Updating 2");
+        console.log(prevProps);
+        console.log(prevState);
+        if (prevState?.lifeCycleStage == this.state.lifeCycleStage) {
+            return false
+        } else {
+            return true
+        }
+    }
+    getSnapshotBeforeUpdate(prevProps: any, prevState: any) {
+        console.log("Snapshot before - Updating 4 ");
+        console.log(prevProps);
+        console.log(prevState);
+        return null
+    }
     componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<{ count: number; }>, snapshot?: any): void {
-        console.log("COmponenet updated");
-        
+        console.log(prevProps);
+        console.log(prevState);
+        console.log(snapshot);
+        console.log("COmponenet updated 5");
+
     }
 
     increment = () => {
@@ -47,7 +62,7 @@ class CBConponent extends Component<any, { count: number }> {
         }));
     }
     decrement = () => {
-        this.setState({ count: this.state.count - 1 });
+        this.setState({ count: this.state.count - 1, lifeCycleStage: 'Updating' });
     }
 
     resetCounter() {
@@ -56,8 +71,7 @@ class CBConponent extends Component<any, { count: number }> {
 
 
     render(): ReactNode {
-        console.log("render method");
-        
+        console.log(`render method | ${this.state.lifeCycleStage} 3`);
         return (
             <>
                 <h1>MyCounter : {this.state.count}</h1>
@@ -69,6 +83,11 @@ class CBConponent extends Component<any, { count: number }> {
         )
     }
 
+
+    componentWillUnmount(): void {
+        console.log("Unmounting component");
+
+    }
 
 
 }

@@ -11,6 +11,7 @@
 // @ts-expect-error -- the asset data is provided by an untyped JavaScript module.
 import assestsData from './assets/Assets.js';
 import CBConponent from './CBC/CBComponent.tsx';
+import FunctionalBasedLifeCycle from './CBC/FunctionalBasedLifeCycle.tsx';
 // import CurrenyExhanger from "./CurrenyExchanger/CurrenyExhanger.js";
 // import useCurrencyInfo from "./CurrenyExchanger/Currency.js";
 // import { useState } from 'react';
@@ -457,11 +458,11 @@ import HOCChild from './HOC/HOCChild.tsx'
 
 
 // ?Class Based Component
-import React from 'react'
 
 const App = () => {
   return (
     <CBConponent></CBConponent>
+    // <FunctionalBasedLifeCycle></FunctionalBasedLifeCycle>
   )
 }
 
