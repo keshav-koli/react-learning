@@ -8,10 +8,11 @@
 // import { Properties } from "./concepts/properties";
 // import { MeeshoProject } from "./meeshotTask/meeshoTask";
 // Assets.js is a JavaScript module without TypeScript declarations.
-// @ts-expect-error -- the asset data is provided by an untyped JavaScript module.
-import assestsData from './assets/Assets.js';
-import CBConponent from './CBC/CBComponent.tsx';
-import FunctionalBasedLifeCycle from './CBC/FunctionalBasedLifeCycle.tsx';
+// @ ts-expect-error -- the asset data is provided by an untyped JavaScript module.
+import { Provider } from 'react-redux';
+// import assestsData from './assets/Assets.js';
+// import CBConponent from './CBC/CBComponent.tsx';
+// import FunctionalBasedLifeCycle from './CBC/FunctionalBasedLifeCycle.tsx';
 // import CurrenyExhanger from "./CurrenyExchanger/CurrenyExhanger.js";
 // import useCurrencyInfo from "./CurrenyExchanger/Currency.js";
 // import { useState } from 'react';
@@ -27,7 +28,10 @@ import FunctionalBasedLifeCycle from './CBC/FunctionalBasedLifeCycle.tsx';
 // import type Todo from "./todoTask/todoContext.js";
 // import TodoForm from "./todoTask/TodoForm.js";
 // import TodoItem from "./todoTask/TodoItem.js";
-import HOCChild from './HOC/HOCChild.tsx'
+// import HOCChild from './HOC/HOCChild.tsx'
+import TodoApp from './ReduxFeature/TodoApp.tsx';
+import { MyStore } from './redux/Store.ts';
+import AddTodo from './ReduxFeature/AddTodo.tsx';
 // ? Function based component
 // ^ 1
 // function App() {
@@ -459,10 +463,24 @@ import HOCChild from './HOC/HOCChild.tsx'
 
 // ?Class Based Component
 
+// const App = () => {
+//   return (
+//     <CBConponent></CBConponent>
+//     // <FunctionalBasedLifeCycle></FunctionalBasedLifeCycle>
+//   )
+// }
+
+// export default App
+
+
+
+// ? Redux Todo App
 const App = () => {
   return (
-    <CBConponent></CBConponent>
-    // <FunctionalBasedLifeCycle></FunctionalBasedLifeCycle>
+    <Provider store={MyStore}>
+      <AddTodo></AddTodo>
+      <TodoApp></TodoApp>
+    </Provider>
   )
 }
 
