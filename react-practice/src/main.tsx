@@ -9,6 +9,8 @@ import Contact from './components/Contact'
 import Home from './components/Home'
 import User from './components/User'
 import Github, { githubData } from './components/Github'
+import { Provider } from 'react-redux'
+import { myCounterStore } from './reduxCounter/CounterStore.ts'
 
 // ? 1 method for routing 
 // const router = createBrowserRouter([
@@ -44,7 +46,9 @@ const router = createBrowserRouter(
 )
 createRoot(document.getElementById('root')!).render(
   // <StrictMode>
-    <App />,
+   <Provider store={myCounterStore}>
+     <App />,
+   </Provider>
     // </StrictMode>,
   )
   {/* <RouterProvider router={router}>

@@ -2,7 +2,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { removeTodo } from "../redux/TodoSlice";
 const TodoApp = () => {
     // const todos = useSelector((state: { todo: [] }) => state.todo);
-    const todos = useSelector(state => state.Todos)
+    const todos = useSelector(
+        (state: { Todos: { id: number; text: string }[] }) => state.Todos
+    )
     const dispatch = useDispatch();
 
     return (

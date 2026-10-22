@@ -9,7 +9,7 @@
 // import { MeeshoProject } from "./meeshotTask/meeshoTask";
 // Assets.js is a JavaScript module without TypeScript declarations.
 // @ ts-expect-error -- the asset data is provided by an untyped JavaScript module.
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 // import assestsData from './assets/Assets.js';
 // import CBConponent from './CBC/CBComponent.tsx';
 // import FunctionalBasedLifeCycle from './CBC/FunctionalBasedLifeCycle.tsx';
@@ -29,9 +29,11 @@ import { Provider } from 'react-redux';
 // import TodoForm from "./todoTask/TodoForm.js";
 // import TodoItem from "./todoTask/TodoItem.js";
 // import HOCChild from './HOC/HOCChild.tsx'
-import TodoApp from './ReduxFeature/TodoApp.tsx';
-import { MyStore } from './redux/Store.ts';
-import AddTodo from './ReduxFeature/AddTodo.tsx';
+// import TodoApp from './ReduxFeature/TodoApp.tsx';
+// import { MyStore } from './redux/Store.ts';
+// import AddTodo from './ReduxFeature/AddTodo.tsx';
+import { myCounterStore } from './reduxCounter/CounterStore.ts';
+import { decrement, increment, incrementByNumber } from './reduxCounter/counter.ts';
 // ? Function based component
 // ^ 1
 // function App() {
@@ -475,12 +477,29 @@ import AddTodo from './ReduxFeature/AddTodo.tsx';
 
 
 // ? Redux Todo App
+// const App = () => {
+//   return (
+//     <Provider store={MyStore}>
+//       <AddTodo></AddTodo>
+//       <TodoApp></TodoApp>
+//     </Provider>
+//   )
+// }
+
+// export default App
+
+// ?  Redux counter
 const App = () => {
+  const dispatch = useDispatch();
+  const counter = useSelector((state:{count:{count:number}}) => state.counter.count);
+
   return (
-    <Provider store={MyStore}>
-      <AddTodo></AddTodo>
-      <TodoApp></TodoApp>
-    </Provider>
+    <>
+      <h1>MyCounter : {counter}</h1>
+      <button className="bg-blue-700 px-3 py-4 cursor-pointer" onClick={() => dispatch(increment())}>Increment</button>
+      <button className="bg-red-700 px-3 py-4 cursor-pointer" onClick={() => dispatch(decrement())}>Decrement</button>
+      <button className="bg-green-700 px-3 py-4 cursor-pointer" onClick={() => dispatch(incrementByNumber(8))}>increment by 8</button>
+    </>
   )
 }
 
