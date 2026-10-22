@@ -40,16 +40,16 @@ const router = createBrowserRouter(
       <Route path='about' element={<About />} />
       <Route path='contact' element={<Contact />} />
       <Route path='user/:userId' element={<User />} />
-      <Route path='github' element={<Github />}  loader={githubData}/>
+      <Route path='github' element={<Github />} loader={githubData} />
     </Route>
   )
 )
 createRoot(document.getElementById('root')!).render(
   // <StrictMode>
-   <Provider store={myCounterStore}>
-     <App />,
-   </Provider>
-    // </StrictMode>,
-  )
-  {/* <RouterProvider router={router}>
+  <Provider store={myCounterStore}>
+    <App />,
+  </Provider>
+  // </StrictMode>,
+)
+{/* <RouterProvider router={router}>
   </RouterProvider> */}

@@ -491,7 +491,7 @@ import { decrement, increment, incrementByNumber } from './reduxCounter/counter.
 // ?  Redux counter
 const App = () => {
   const dispatch = useDispatch();
-  const counter = useSelector((state:{count:{count:number}}) => state.counter.count);
+  const counter = useSelector((state: { counter: { count: number } }) => state.counter.count);
 
   return (
     <>

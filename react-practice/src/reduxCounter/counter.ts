@@ -9,10 +9,10 @@ export let MyCounter = createSlice({
     initialState,
     reducers: {
         increment: (state) => {
-            state.count+=1;
+            state.count += 1;
         },
         decrement: (state) => {
-            state.count-=1;
+            state.count -= 1;
         },
         incrementByNumber: (state, action) => {
             state.count += action.payload
